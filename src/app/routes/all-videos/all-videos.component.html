@@ -1,0 +1,9 @@
+<div class="max-w-screen-lg py-12 mx-auto">
+<main class="grid grid-cols-1 mt-32  justify-center lg:grid-cols-3">
+
+  @for (video of $videos; track video.title) {
+    <app-card [video]="video"></app-card>
+  }
+
+</main>
+</div>

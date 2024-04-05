@@ -1,0 +1,21 @@
+<main class="py-28 px-6 flex flex-col lg:flex-row w-full">
+  <video class="h-full w-full rounded-lg lg:max-w-2xl xl:max-w-4xl" controls autoplay>
+    <source
+      [src]="getMp4($id)"
+      type="video/mp4"
+    />
+    Your browser does not support the video tag.
+  </video>
+
+  <h1>
+    {{ $video?.title }}
+  </h1>
+  <div class="flex flex-col">
+    <app-wide-card></app-wide-card>
+    <app-wide-card></app-wide-card>
+
+    <app-wide-card></app-wide-card>
+    <app-wide-card></app-wide-card>
+  </div>
+
+</main>
