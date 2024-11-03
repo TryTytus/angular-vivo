@@ -1,5 +1,6 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
+import { getStatic } from '../../hooks/getStatic';
 
 @Component({
   selector: 'app-comment',
@@ -9,5 +10,7 @@ import { Component } from '@angular/core';
   styleUrl: './comment.component.css'
 })
 export class CommentComponent {
+
+
 
 }

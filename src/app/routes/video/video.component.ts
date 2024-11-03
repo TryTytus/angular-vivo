@@ -1,17 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { WideCardComponent } from '../../ui/wide-card/wide-card.component';
 import {
+  CollectionModelVideo,
   EntityModelVideo,
   VideoEntityControllerService,
 } from '../../api';
 import { ActivatedRoute } from '@angular/router';
 import { getStatic } from '../../hooks/getStatic';
+import { CommentFormComponent } from '../../ui/comment-form/comment-form.component';
+import { CommentComponent } from '../../ui/comment/comment.component';
 
 
 @Component({
   selector: 'app-video',
   standalone: true,
-  imports: [WideCardComponent],
+  imports: [WideCardComponent, CommentFormComponent, CommentComponent],
   templateUrl: './video.component.html',
   styleUrl: './video.component.css',
 })
@@ -20,6 +23,8 @@ export class VideoComponent implements OnInit {
   $id: string | null = null
   $video: EntityModelVideo | undefined
 
+  $many_videos: CollectionModelVideo | undefined
+
   constructor(
     private videoService: VideoEntityControllerService,
     private router: ActivatedRoute
@@ -27,6 +32,7 @@ export class VideoComponent implements OnInit {
 
   ngOnInit(): void {
     this.getVideo()
+    this.getAll()
   }
 
   getVideo(): void {
@@ -39,6 +45,13 @@ export class VideoComponent implements OnInit {
           this.$video = video
         });
     // else
+  }
+
+  getAll(): void {
+    this.videoService.getCollectionResourceVideoGet1()
+    .subscribe((videos: CollectionModelVideo) => {
+      this.$many_videos = videos
+    })
   }
 
   getMp4(id: string | null) {

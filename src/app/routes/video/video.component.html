@@ -1,5 +1,6 @@
-<main class="py-28 px-6 flex flex-col lg:flex-row w-full">
-  <video class="h-full w-full rounded-lg lg:max-w-2xl xl:max-w-4xl" controls autoplay>
+<main class="py-28 px-6 grid lg:grid-cols-3 lg:flex-row w-full">
+  <div class="col-span-2">
+  <video class=" rounded-lg" controls autoplay>
     <source
       [src]="getMp4($id)"
       type="video/mp4"
@@ -7,15 +8,28 @@
     Your browser does not support the video tag.
   </video>
 
-  <h1>
+  <h1 class="text-3xl p-6">
     {{ $video?.title }}
   </h1>
-  <div class="flex flex-col">
-    <app-wide-card></app-wide-card>
-    <app-wide-card></app-wide-card>
 
-    <app-wide-card></app-wide-card>
-    <app-wide-card></app-wide-card>
+  <h2 class="px-6">
+    {{ $video?.views }} views
+  </h2>
+
+
+<app-comment-form></app-comment-form>
+
+<div class="mr-10">
+  <app-comment></app-comment>
+</div>
+
+</div>
+
+  <div class="flex flex-col col-span-1">
+    @for (vid of $many_videos?._embedded?.videos; track vid.title)
+    {
+      <app-wide-card (key)="vid.title" [video]="vid"></app-wide-card>
+    }
   </div>
 
 </main>
